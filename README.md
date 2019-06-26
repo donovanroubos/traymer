@@ -1,0 +1,2 @@
+# ⚡️ Electron Tray boilerplate
+
