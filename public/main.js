@@ -48,12 +48,12 @@ const createTray = () => {
 const createWindow = () => {
   window = new BrowserWindow({
     width: 320,
-    height: 450,
+    height: 440,
     show: false,
     frame: false,
     fullscreenable: false,
     resizable: false,
-    transparent: false
+    transparent: true
   })
 
   const devPath = 'http://localhost:3000'
