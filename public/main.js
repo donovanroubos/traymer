@@ -1,10 +1,14 @@
-const { app, BrowserWindow, Tray } = require('electron')
+const {
+  app,
+  BrowserWindow,
+  Tray
+} = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
 
 require('electron-reload')(__dirname, {
   electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
-});
+})
 
 let tray = null
 let window = null
@@ -16,7 +20,9 @@ const getWindowPosition = () => {
   const x = Math.round(trayBounds.x + (trayBounds.width / 2) - (windowBounds.width / 2))
   const y = Math.round(trayBounds.y + trayBounds.height + 4)
 
-  return {x, y}
+  return {
+    x, y
+  }
 }
 
 const showWindow = () => {
@@ -27,9 +33,9 @@ const showWindow = () => {
   window.show()
 }
 
-const toggleWindow = () => {
+const toggleWindow = () => (
   window.isVisible() ? window.hide() : showWindow()
-}
+)
 
 const createTray = () => {
   tray = new Tray(`${path.join(__dirname, 'icon.png')}`)
@@ -68,43 +74,3 @@ app.on('ready', () => {
   createTray()
   createWindow()
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// app.on('ready', () => {
-//   const srcRoot = path.join(__dirname, '/index.html')
-
-//   const mainWindow = new BrowserWindow({
-//     options: {
-//       width: 300,
-//       height: 500,
-//       resizable: false,
-//       show: false,
-//       frame: false,
-//       webPreferences: {
-//         backgroundThrottling: false,
-//       }
-//     },
-//     url: `${srcRoot}/index.html`,
-//   })
-
-
-//   tray = new Tray(path.join(__dirname, '/icon.png'), mainWindow)
-
-// })
