@@ -1,0 +1,40 @@
+.timer {
+  display: flex;
+  flex-direction: column;
+
+  .time {
+    font-size: 32px;
+    text-align: center;
+    padding: 32px 0;
+    margin-bottom: 16px;
+  }
+
+  .input {
+    margin: 32px;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #e2e2e2;
+    outline: none;
+    font-size: 16px;
+  }
+
+  .btns {
+    display: flex;
+    justify-content: space-around;
+    padding: 32px;
+  }
+
+  .btn {
+    flex-grow: 0;
+    margin: 16px 0;
+    border: none;
+    max-width: 80px;
+    width: 100%;
+    font-size: 16px;
+    color: white;
+    background: rgb(83, 39, 240);
+    border-radius: 4px;
+    padding: 8px;
+  }
+}
+

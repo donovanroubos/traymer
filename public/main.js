@@ -55,7 +55,6 @@ const createWindow = () => {
     movable: false,
     icon: path.join(__dirname, 'icon.png'),
     webPreferences: {
-      backgroundThrottling: false,
       nodeIntegration: true,
       preload: path.join(__dirname, 'src/preload.js')
     }
@@ -85,11 +84,10 @@ app.on('ready', () => {
   createWindow()
 })
 
-ipcMain.on('message', (event, arg) => {
+ipcMain.on('stop-timer', () => {
   const notification = new Notification({
-    title: 'This is a title',
-    subtitle: arg,
-    closeButtonText: 'Skip this'
+    title: 'Timer has stopped!',
+    subtitle: 'Click here to reset timer',
   })
 
   notification.show()

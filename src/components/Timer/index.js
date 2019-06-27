@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import isElectron from 'is-electron'
 
 class Timer extends Component {
   constructor(props) {
@@ -36,7 +37,10 @@ class Timer extends Component {
             timerOn: false
           })
 
-          alert('Countdown ended')
+          if (isElectron()) {
+            window.ipcRenderer.send('stop-timer')
+            console.log(window.ipcRenderer)
+          }
         }
       }, 10)
     }
@@ -94,11 +98,40 @@ class Timer extends Component {
           </span>
         </div>
 
-        <button type="button" onClick={this.startTimer}>Start</button>
-        <button type="button" onClick={this.stopTimer}>Stop</button>
-        <button type="button" onClick={this.resetTimer}>Reset</button>
+        <input
+          className="input"
+          ref={this.minuteInput}
+          type="number"
+          placeholder="Time in minutes"
+          onChange={e => this.setTime(e)}
+        />
 
-        <input ref={this.minuteInput} type="number" onChange={e => this.setTime(e)} />
+        <div className="btns">
+          <button
+            className="btn"
+            type="button"
+            onClick={this.startTimer}
+          >
+              Start
+          </button>
+
+          <button
+            className="btn"
+            type="button"
+            onClick={this.stopTimer}
+          >
+            Stop
+          </button>
+
+          <button
+            className="btn"
+            type="button"
+            onClick={this.resetTimer}
+          >
+            Reset
+          </button>
+        </div>
+
       </div>
     )
   }
