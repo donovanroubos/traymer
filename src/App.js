@@ -3,6 +3,7 @@ import isElectron from 'is-electron'
 
 // Components
 import Header from './components/Header'
+import Timer from './components/Timer'
 
 function App() {
   function onClickApp() {
@@ -13,8 +14,10 @@ function App() {
   }
 
   return (
-    <div className="app" onClick={onClickApp}>
-      <Header />
+    <div className="app">
+      <Header onClick={onClickApp} />
+
+      <Timer />
     </div>
   )
 }

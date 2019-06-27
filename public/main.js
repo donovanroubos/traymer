@@ -16,7 +16,7 @@ const getWindowPosition = () => {
   const trayBounds = tray.getBounds()
 
   const x = Math.round(trayBounds.x + (trayBounds.width / 2) - (windowBounds.width / 2))
-  const y = Math.round(trayBounds.y + trayBounds.height + 4)
+  const y = Math.round(trayBounds.y + trayBounds.height + 2)
 
   return {
     x, y
@@ -48,12 +48,14 @@ const createWindow = () => {
     width: 320,
     height: 440,
     show: false,
+    transparent: true,
     frame: false,
     fullscreenable: false,
     resizable: false,
-    transparent: true,
+    movable: false,
     icon: path.join(__dirname, 'icon.png'),
     webPreferences: {
+      backgroundThrottling: false,
       nodeIntegration: true,
       preload: path.join(__dirname, 'src/preload.js')
     }
