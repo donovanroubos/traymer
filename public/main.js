@@ -5,8 +5,13 @@ const {
   Notification,
   ipcMain
 } = require('electron')
+
 const path = require('path')
 const isDev = require('electron-is-dev')
+
+try {
+  require('electron-reloader')(module)
+} catch (_) {}
 
 let tray = null
 let window = null
@@ -72,15 +77,6 @@ const createWindow = () => {
   })
 }
 
-// Electron Reloading
-require('electron-reload')(__dirname, {
-  electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
-})
-
-// require('electron-reload')(__dirname, {
-//   electron: require('${__dirname}/../../node_modules/electron')
-// })
-
 app.dock.hide()
 
 app.on('ready', () => {
@@ -90,9 +86,11 @@ app.on('ready', () => {
 
 ipcMain.on('stop-timer', () => {
   const notification = new Notification({
-    title: 'Timer has stopped!',
-    subtitle: 'Click here to reset timer',
+    title: 'Timer has stoppedddd',
+    subtitle: 'Click here to reset timer'
   })
 
   notification.show()
+
+  console.log('Notificatie', notification)
 })

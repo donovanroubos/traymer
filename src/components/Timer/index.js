@@ -40,19 +40,23 @@ function Timer() {
         setTimerTime(newTime)
       } else {
         setIsTimerOn(false)
-
-        if (isElectron()) {
-          ipcRenderer.send('stop-timer')
-        }
       }
     }
   }, isTimerOn ? 1000 : null)
+
+  function sendNotification() {
+    if (isElectron()) {
+      ipcRenderer.send('stop-timer')
+    }
+  }
 
   function resetTimer() {
     if (!isTimerOn) {
       setTimerTime(0)
 
-      minuteInput.current.value = 0
+      minuteInput.current.value = ''
+      minuteInput.current.focus()
+      sendNotification()
     }
   }
 
