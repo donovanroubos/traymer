@@ -1,4 +1,13 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
 .app {
   height: 100%;
   background: white;
+  display: inline-flex;
+  width: 100%;
+  flex-direction: column;
 }

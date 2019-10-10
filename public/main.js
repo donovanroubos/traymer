@@ -36,7 +36,7 @@ const toggleWindow = () => (
 )
 
 const createTray = () => {
-  tray = new Tray(`${path.join(__dirname, 'icon.png')}`)
+  tray = new Tray(`${path.join(__dirname, 'tray-icon.png')}`)
 
   tray.on('click', () => {
     toggleWindow()

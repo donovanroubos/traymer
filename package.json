@@ -1,15 +1,16 @@
 {
   "name": "create-react-app-boilerplate",
+  "productName": "Traymer",
   "version": "0.1.0",
   "private": true,
   "main": "public/main.js",
-  "homepage": "./",
+  "homepage": "https://github.com/donovanroubos",
   "scripts": {
     "dev": "node scripts/start.js electron-start",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "electron-start": "electron .",
-    "electron-pack": "build --win --macos -c.extraMetadata.main=build/Main.js"
+    "electron-pack": "build --macos -c.extraMetadata.main=build/Main.js"
   },
   "dependencies": {
     "@babel/core": "7.1.6",
@@ -25,10 +26,6 @@
     "css-loader": "1.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
-    "electron": "^5.0.5",
-    "electron-builder": "^20.44.4",
-    "electron-is-dev": "^1.1.0",
-    "electron-reload": "^1.4.0",
     "eslint-config-react-app": "^3.0.6",
     "eslint-plugin-flowtype": "2.50.1",
     "eslint-plugin-import": "2.14.0",
@@ -121,6 +118,10 @@
     ]
   },
   "devDependencies": {
+    "electron": "^5.0.5",
+    "electron-builder": "^20.44.4",
+    "electron-is-dev": "^1.1.0",
+    "electron-reload": "^1.4.0",
     "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.4",
     "electron-react-devtools": "^0.5.3",

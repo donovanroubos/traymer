@@ -5,8 +5,7 @@ import React, {
 } from 'react'
 import isElectron from 'is-electron'
 
-// Components
-// import TimeInput from '../TimeInput'
+const { ipcRenderer } = window.require('electron')
 
 function useInterval(callback, delay) {
   const savedCallback = useRef()
@@ -15,7 +14,6 @@ function useInterval(callback, delay) {
     savedCallback.current = callback
   }, [callback])
 
-  // Set up the interval
   useEffect(() => {
     function tick() {
       savedCallback.current()
@@ -44,19 +42,11 @@ function Timer() {
         setIsTimerOn(false)
 
         if (isElectron()) {
-          window.ipcRenderer.send('stop-timer')
+          ipcRenderer.send('stop-timer')
         }
       }
     }
   }, isTimerOn ? 1000 : null)
-
-  function startTimer() {
-    setIsTimerOn(true)
-  }
-
-  function stopTimer() {
-    setIsTimerOn(false)
-  }
 
   function resetTimer() {
     if (!isTimerOn) {
@@ -72,8 +62,6 @@ function Timer() {
     setTimerTime(inputInMinutes * 60000)
   }
 
-
-  const mseconds = (`0${Math.floor((timerTime / 10) % 60) % 60}`).slice(-2)
   const seconds = (`0${Math.floor((timerTime / 1000) % 60) % 60}`).slice(-2)
   const minutes = (`0${Math.floor((timerTime / 60000) % 60)}`).slice(-2)
   const hours = (`0${Math.floor((timerTime / 3600000) % 60)}`).slice(-2)
@@ -92,14 +80,6 @@ function Timer() {
         <span className="seconds">
           {seconds}
         </span>
-          :
-        <span className="miliseconds">
-          {mseconds}
-        </span>
-      </div>
-
-      <div className="time">
-        {/* <TimeInput onChange={} /> */}
       </div>
 
       <input
@@ -114,7 +94,7 @@ function Timer() {
         <button
           className="btn"
           type="button"
-          onClick={startTimer}
+          onClick={() => setIsTimerOn(true)}
         >
             Start
         </button>
@@ -122,7 +102,7 @@ function Timer() {
         <button
           className="btn"
           type="button"
-          onClick={stopTimer}
+          onClick={() => setIsTimerOn(false)}
         >
           Stop
         </button>
