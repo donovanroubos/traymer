@@ -46,7 +46,7 @@ const createTray = () => {
 const createWindow = () => {
   window = new BrowserWindow({
     width: 320,
-    height: 440,
+    height: 340,
     show: false,
     transparent: true,
     frame: false,
@@ -76,6 +76,10 @@ const createWindow = () => {
 require('electron-reload')(__dirname, {
   electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
 })
+
+// require('electron-reload')(__dirname, {
+//   electron: require('${__dirname}/../../node_modules/electron')
+// })
 
 app.dock.hide()
 
