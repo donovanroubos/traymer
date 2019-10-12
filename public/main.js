@@ -10,7 +10,12 @@ const path = require('path')
 const isDev = require('electron-is-dev')
 
 try {
-  require('electron-reloader')(module)
+  require('electron-reloader')({
+    module,
+    options: {
+      ignore: ['main.js']
+    }
+  })
 } catch (_) {}
 
 let tray = null
@@ -86,11 +91,13 @@ app.on('ready', () => {
 
 ipcMain.on('stop-timer', () => {
   const notification = new Notification({
-    title: 'Timer has stoppedddd',
-    subtitle: 'Click here to reset timer'
+    title: 'Timer has stopped',
+    subtitle: 'Click to set a new timer'
+  })
+
+  notification.on('click', () => {
+    window.show()
   })
 
   notification.show()
-
-  console.log('Notificatie', notification)
 })

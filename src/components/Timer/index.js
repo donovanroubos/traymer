@@ -32,18 +32,6 @@ function Timer() {
 
   const minuteInput = useRef(null)
 
-  useInterval(() => {
-    if (timerTime !== 0) {
-      const newTime = timerTime - 1000
-
-      if (newTime >= 0) {
-        setTimerTime(newTime)
-      } else {
-        setIsTimerOn(false)
-      }
-    }
-  }, isTimerOn ? 1000 : null)
-
   function sendNotification() {
     if (isElectron()) {
       ipcRenderer.send('stop-timer')
@@ -56,7 +44,6 @@ function Timer() {
 
       minuteInput.current.value = ''
       minuteInput.current.focus()
-      sendNotification()
     }
   }
 
@@ -65,6 +52,19 @@ function Timer() {
 
     setTimerTime(inputInMinutes * 60000)
   }
+
+  useInterval(() => {
+    if (timerTime !== 0) {
+      const newTime = timerTime - 1000
+
+      if (newTime >= 0) {
+        setTimerTime(newTime)
+      } else {
+        setIsTimerOn(false)
+        sendNotification()
+      }
+    }
+  }, isTimerOn ? 1000 : null)
 
   const seconds = (`0${Math.floor((timerTime / 1000) % 60) % 60}`).slice(-2)
   const minutes = (`0${Math.floor((timerTime / 60000) % 60)}`).slice(-2)
