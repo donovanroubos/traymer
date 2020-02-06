@@ -63,6 +63,8 @@ const createWindow = () => {
     fullscreenable: false,
     resizable: false,
     movable: false,
+    hasShadow: false,
+    thickFrame: false,
     icon: path.join(__dirname, 'icon.png'),
     webPreferences: {
       nodeIntegration: true,

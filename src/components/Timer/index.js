@@ -68,22 +68,18 @@ function Timer() {
 
   const seconds = (`0${Math.floor((timerTime / 1000) % 60) % 60}`).slice(-2)
   const minutes = (`0${Math.floor((timerTime / 60000) % 60)}`).slice(-2)
-  const hours = (`0${Math.floor((timerTime / 3600000) % 60)}`).slice(-2)
+  // const hours = (`0${Math.floor((timerTime / 3600000) % 60)}`).slice(-2)
 
   return (
     <div className="timer">
       <div className="time">
-        <span className="hours">
-          {hours}
-        </span>
-          :
-        <span className="minutes">
+        {/* <span className="minutes">
           {minutes}
         </span>
           :
         <span className="seconds">
           {seconds}
-        </span>
+        </span> */}
       </div>
 
       <input
@@ -95,13 +91,13 @@ function Timer() {
       />
 
       <div className="btns">
-        <button
+        {/* <button
           className="btn"
           type="button"
           onClick={() => setIsTimerOn(true)}
         >
             Start
-        </button>
+        </button> */}
 
         <button
           className="btn"

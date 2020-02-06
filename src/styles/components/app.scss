@@ -1,13 +1,60 @@
+$tip-size: 22px;
+$border-color: #e2e2e2;
+$background-color: #fff;
+$border-radius: 4px;
+
 html,
 body,
 #root {
   height: 100%;
 }
 
+#root {
+  display: flex;
+}
+
 .app {
   height: 100%;
-  background: white;
-  display: inline-flex;
   width: 100%;
+  background: transparent;
+  display: inline-flex;
   flex-direction: column;
+  padding: 16px;
+
+  .container {
+    background: $background-color;
+    border: 1px solid $border-color;
+    box-shadow:
+      0 3px 6px 1px rgba(0, 38, 97, .1),
+      0 21px 30px -20px rgba(0, 38, 97, .2);
+    border-radius: $border-radius;
+    position: relative;
+    z-index: 1;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      border-radius: 6px;
+      left: 50%;
+    }
+
+    &::before {
+      width: $tip-size;
+      height: $tip-size;
+      border: 1px solid $border-color;
+      box-shadow: 0 0 9px 1px rgba(0, 38, 97, .03);
+      z-index: -1;
+      transform: translate3d(-50%, calc(-100% + 16px), 0) rotate(45deg);
+    }
+
+    &::after {
+      width: $tip-size;
+      height: $tip-size;
+      background: $background-color;
+      transform: translate3d(-50%, -7px, 0) rotate(45deg);
+      top: 0;
+    }
+  }
 }
